@@ -33,6 +33,7 @@ final_output=final_output_data(aggregated_df,full_cluster_df)
 
 fig3=bar_plot(full_cluster_df=full_cluster_df)
 st.pyplot(fig3)
-st.write(final_output.head())
+# st.write(final_output.head())
 csv_data=final_output.to_csv(index=False)
 st.download_button(data=csv_data,label="Download Final Segmented Data",file_name="Final_Segmented_Data.csv",mime="text/csv",key="download-button",help="click to download the clustered data")
+st.sidebar.markdown("**Developed by Yohannan P Chacko**\n yohannanpchacko0814@gmail.com")
