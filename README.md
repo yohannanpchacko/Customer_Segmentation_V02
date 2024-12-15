@@ -65,7 +65,7 @@ Interactive Streamlit-based dashboard for easy exploration.
 | **Gold**                 | High activity, moderate spending    | Retain with loyalty programs and discounts.       |
 | **Inactive**             | Low recency and activity            | Launch re-engagement campaigns.                   |
 | **Platinum & Super Platinum** | High spending customers            | Provide VIP experiences and exclusive perks.       |
-| **Occasional & Moderate**| Average activity and spending       | Use targeted promotions to boost engagement.      |
+| **Low_Recent & Moderate**| Average activity and spending       | Use targeted promotions to boost engagement.      |
 
 ## Visualization (from Streamlit):
 The chart below illustrates customer distribution and average RFM values for each cluster:
