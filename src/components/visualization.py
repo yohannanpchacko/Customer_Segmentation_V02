@@ -1,10 +1,14 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from src.exception import CustomException
 from src.logger import logging
 import sys
+import plotly.express as px
+import streamlit as st
+import time
 
 
 
@@ -68,5 +72,60 @@ def bar_plot(full_cluster_df:pd.DataFrame):
         return fig1
     except Exception as e:
         raise CustomException(e,sys)
+    
+    
+def plot_3d_scatter_new(Non_Outlier_Data, colors):    
+    try:
+        # Ensure 'ClusterName' exists and is populated
+        if 'ClusterName' not in Non_Outlier_Data.columns:
+            raise ValueError("'ClusterName' column is missing from the data.")
+
+        # Create the 3D scatter plot using 'ClusterName' for color
+        fig_3d = px.scatter_3d(
+            Non_Outlier_Data,
+            x='Monetary',
+            y='Frequency',
+            z='Recency',
+            color='ClusterName',
+            title="3D Scatter Plot - KMeans Clusters",
+            color_discrete_map=dict(zip(Non_Outlier_Data['ClusterName'], colors))  # Map colors to ClusterName
+        )
+
+        # Reduce the marker size
+        fig_3d.update_traces(marker=dict(size=5))  # Adjust size as needed
+
+        # Set the layout with a specific camera view (rotated horizontally)
+        fig_3d.update_layout(
+            scene=dict(
+                xaxis_title="Monetary Value",
+                yaxis_title="Frequency",
+                zaxis_title="Recency",
+                camera=dict(
+                    up=dict(x=0, y=0, z=1),  # Z-axis remains up
+                    center=dict(x=0, y=0, z=0),  # Center the chart
+                    eye=dict(x=1.3, y=-1.2, z=1.2)  # Adjust eye position for horizontal rotation
+                )
+            ),
+            title=dict(
+                text="3D Scatter Plot - KMeans Clusters",  # Title text
+                x=0.5,  # Center the title horizontally
+                y=0.95,  # Adjust the vertical alignment
+                xanchor='center',
+                yanchor='top',
+                font=dict(size=18)  # Adjust font size if needed
+            ),
+            width=1200,  # Increase width
+            height=600,  # Increase height
+            margin=dict(l=20, r=20, t=50, b=20)
+        )
+
+        return fig_3d
+    except Exception as e:
+        raise Exception(f"Error in creating 3D scatter plot: {e}")
+
+
+
+
+
     
 

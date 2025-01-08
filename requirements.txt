@@ -7,4 +7,5 @@ openpyxl
 streamlit
 plotly
 chardet
+kneed
 #-e .

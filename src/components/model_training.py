@@ -7,7 +7,7 @@ import sys
 # performs kmeans clustering
 def perform_clustering(scaled_data: pd.DataFrame,n_clusters: int=4)->pd.DataFrame:
     try:
-        kmeans=KMeans(n_clusters=n_clusters,random_state=42,max_iter=1000)
+        kmeans=KMeans(n_clusters=n_clusters,random_state=42,max_iter=1000,init='k-means++')
         cluster_labels=kmeans.fit_predict(scaled_data)
         logging.info("Clustering is completed")
         return cluster_labels
