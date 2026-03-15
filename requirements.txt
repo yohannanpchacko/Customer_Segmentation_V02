@@ -4,7 +4,7 @@ matplotlib
 seaborn
 scikit-learn
 openpyxl
-streamlit
+streamlit>=1.55.0
 plotly
 chardet
 kneed
